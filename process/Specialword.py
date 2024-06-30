@@ -7,7 +7,8 @@ import torch
 import os
 import json
 import tokenizer
-
+import nltk
+nltk.download('punkt')
 # 获取同一目录下的所有文件名，返回存储的fileslist
 fileslist = []
 
@@ -45,14 +46,16 @@ count = 0
 special_tokens_set = set([])
 for f_code in f_codes:
     tokens = word_tokenize(f_code)
-    print("这是第%d个代码", count)
+    print("Token count:", count)
     for token in tokens:
         tokens_ids = tokenizer.convert_tokens_to_ids(token)
         if tokens_ids == 3:
             special_tokens_set.add(token)
     count = count + 1
 special_tokens_list = list(special_tokens_set)
+
 # 将special_tokens_list写入文本
 f = open("../data/special.txt", 'w')
 f.writelines(" ".join(str(i) for i in special_tokens_list))
 f.close()
+print('Done')

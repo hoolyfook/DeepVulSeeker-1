@@ -757,7 +757,7 @@ def create_cfg_matrix():
     connect_node_cfg(cfg_matrix, test_root_node)
     return cfg_matrix
 
-with open("../data/raw/FFmpeg/test.jsonl", "r+", encoding="utf8") as f: #输入路径
+with open("../data/raw/FFmpeg/valid.jsonl", "r+", encoding="utf8") as f: 
     c = f.readlines()
     time = 0
     for i in c:
@@ -782,8 +782,8 @@ with open("../data/raw/FFmpeg/test.jsonl", "r+", encoding="utf8") as f: #输入�
         elif time > 1:
             ddfg = np.concatenate((ddfg,dfg_matrix),axis=0)
             ccfg = np.concatenate((ccfg,cfg_matrix),axis=0)
-        print(ccfg.shape)
-        print(ddfg.shape)
-    np.save('../data/cfg/test_cfg.npy',ccfg) #输出路径
-    np.save('../data/dfg/test_dfg.npy',ddfg)
+    print(ccfg.shape)
+    print(ddfg.shape)
+    np.save('../data/cfg/valid_cfg.npy',ccfg) 
+    np.save('../data/dfg/valid_dfg.npy',ddfg)
 f.close()
